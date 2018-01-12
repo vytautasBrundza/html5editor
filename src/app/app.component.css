@@ -1,0 +1,9 @@
+input {
+    width: 50px;
+}
+
+td {
+    width: 64px;
+    height: 64px;
+    border: solid 1px grey;
+}
