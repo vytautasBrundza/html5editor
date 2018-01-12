@@ -1,5 +1,7 @@
 <input type="button" value="Get" (click)="getData()">
-<input type="button" value="Out" (click)="outputData()">
+<input type="button" value="Out" (click)="outputData()"><br/>
+
+<input type="button" value="Edit image" (click)="editMode('img')"> <input type="button" value="Edit walkable" (click)="editMode('walkable')">
 
 <div *ngIf="dataService.data">
   Name: <input [(ngModel)]="dataService.data.name"><br/>
@@ -8,10 +10,14 @@
   <span *ngFor="let texture of dataService.data.textureList; let n = index" >
       <img *ngIf="n!=0" src="assets/img/{{texture}}" (click)="selectImage(n)"/>
   </span><br/>
-  Selected image: {{imgNo}}
+
+  <input type="button" value="ground" (click)="walk(2)"> <input type="button" value="water" (click)="walk(1)"> <input type="button" value="obstacle" (click)="walk(0)"><br/>
+  Edit: {{dataService.edit}} <br/>
+  Selected image: {{imgNo}} walkable: {{walkable}}
   <table>
     <tr *ngFor="let row of dataService.data.tileData; let i = index">
       <td *ngFor="let cell of dataService.data.tileData[i]; let j = index" >
+        <span style="position:absolute; top:0; left:0;">{{dataService.data.tileData[i][j].walkable}}</span>
         <img src="assets/img/{{dataService.data.textureList[dataService.data.tileData[i][j].img]}} " (click)="setImage(i,j)"/>
       </td>
     </tr>

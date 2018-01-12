@@ -6,4 +6,5 @@ td {
     width: 64px;
     height: 64px;
     border: solid 1px grey;
+    position: relative;
 }

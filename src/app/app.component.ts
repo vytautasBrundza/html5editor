@@ -12,6 +12,8 @@ export class AppComponent {
 	constructor(private dataService:DataService) { }
 	title = 'app';
 	imgNo = 1;
+	walkable = 2;
+	edit = 'img';
 	getData() {
 		this.dataService.getJSON().subscribe(
 			(response)=> {
@@ -26,6 +28,19 @@ export class AppComponent {
 		this.imgNo = n;
 	}
 	setImage(i,j) {
-		this.dataService.data.tileData[i][j].img = this.imgNo;
+		if(this.edit=='img') {
+			console.log('img');
+			this.dataService.data.tileData[i][j].img = this.imgNo;
+		} else if(this.edit=='walkable') {
+			console.log('walkable '+this.walkable);
+			this.dataService.data.tileData[i][j].walkable = this.walkable;
+		}
+			
+	}
+	walk(w) {
+		this.walkable = w;
+	}
+	editMode(e) {
+		this.edit = e;
 	}
 }
